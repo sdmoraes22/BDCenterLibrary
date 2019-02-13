@@ -13,17 +13,13 @@ namespace BDCenterLibrary.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult CriarLivro()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult AlterarLivro()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
