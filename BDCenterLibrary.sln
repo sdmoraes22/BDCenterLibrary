@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDCenterLibrary.DTO", "BDCe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDCenterLibrary.BLL", "BDCenterLibrary.BLL\BDCenterLibrary.BLL.csproj", "{7A2DE12F-09C4-4F8F-9140-1DE64D3F88D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLScripts", "SQLScripts", "{13DAFA40-FA2F-4A89-BAD6-BA4971F9AA90}"
+	ProjectSection(SolutionItems) = preProject
+		ScriptCreateTables.sql = ScriptCreateTables.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
