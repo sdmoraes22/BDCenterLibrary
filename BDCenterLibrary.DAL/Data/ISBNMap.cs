@@ -11,10 +11,9 @@ namespace BDCenterLibrary.DAL.Data
         public ISBNMap()
         {
             Table("ISBN");
+
             Id(x => x.Isbn);
-
             HasOne(x => x.Livro);
-
         }
 
     }

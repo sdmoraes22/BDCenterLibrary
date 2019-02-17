@@ -8,8 +8,8 @@ namespace BDCenterLibrary.DAL.Data
         public AutorMap()
         {
             Table("Autor");
-            Id(x => x.Id).GeneratedBy.Identity().UnsavedValue(0);
 
+            Id(x => x.Id).GeneratedBy.Identity().UnsavedValue(0);
             Map(x => x.Id);
             Map(x => x.Nome);
         }

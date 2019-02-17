@@ -10,19 +10,20 @@ namespace BDCenterLibrary.DAL.Helper
     {
         private static ISessionFactory _sessionFactory;
 
-        private static void CreateSessionFactory()
+        public static void CreateSessionFactory()
         {
             _sessionFactory = Fluently.Configure().Database(
-            MsSqlConfiguration.MsSql2005
+            MsSqlConfiguration.MsSql2008
                 .ConnectionString(c => c
                 .TrustedConnection()
                 .Server("localhost")
-                .Database("LDTT")))
+                .Database("Biblioteca")))
                 .Mappings(m => m.FluentMappings.Add<LivroMap>())
                 .Mappings(m => m.FluentMappings.Add<AutorMap>())
                 .Mappings(m => m.FluentMappings.Add<ISBNMap>())
-            .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
-            .BuildSessionFactory();
+                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
+                .BuildSessionFactory();
         }
+
     }
 }
