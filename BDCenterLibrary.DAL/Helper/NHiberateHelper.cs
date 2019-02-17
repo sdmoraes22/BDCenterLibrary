@@ -3,27 +3,41 @@ using FluentNHibernate.Cfg.Db;
 using BDCenterLibrary.DAL.Data;
 using NHibernate.Tool.hbm2ddl;
 using NHibernate;
+using BDCenterLibrary.DAL.Model;
 
 namespace BDCenterLibrary.DAL.Helper
 {
     public class NHiberateHelper
     {
-        private static ISessionFactory _sessionFactory;
+        private static ISessionFactory session;
 
-        public static void CreateSessionFactory()
+        public static ISessionFactory CreateSession()
         {
-            _sessionFactory = Fluently.Configure().Database(
-            MsSqlConfiguration.MsSql2008
-                .ConnectionString(c => c
-                .TrustedConnection()
-                .Server("localhost")
-                .Database("Biblioteca")))
-                .Mappings(m => m.FluentMappings.Add<LivroMap>())
-                .Mappings(m => m.FluentMappings.Add<AutorMap>())
-                .Mappings(m => m.FluentMappings.Add<ISBNMap>())
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
-                .BuildSessionFactory();
+            if(session != null)
+            {
+                return session;
+            }
+            else
+            {
+                IPersistenceConfigurer configDB = OracleClientConfiguration.Oracle10.ConnectionString(c =>
+                    c.Is("DATA SOURCE=CRISTIANO;PERSIST SECURITY INFO=True;USER ID=CRISTIANO;Password=123456"));
+
+                var configMap = Fluently.Configure().Database(configDB).Mappings(m => m.FluentMappings
+                        .AddFromAssemblyOf<Livro>().ExportTo(@".\")
+                        .AddFromAssemblyOf<Autor>().ExportTo(@".\")
+                        .AddFromAssemblyOf<ISBN>().ExportTo(@".\")
+                        );
+
+                session = configMap.BuildSessionFactory();
+                return session;
+            }
         }
+
+        public static ISession AbrirSession()
+        {
+            return session.OpenSession();
+        }
+
 
     }
 }
