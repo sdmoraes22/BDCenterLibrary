@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using BDCenterLibrary.DAL.Model;
+using BDCenterLibrary.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +21,7 @@ namespace BDCenterLibrary.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
     }
 }

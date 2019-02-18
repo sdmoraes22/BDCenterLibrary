@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BDCenterLibrary.DAL\BDCenterLibrary.DAL.csproj" />
+    <ProjectReference Include="..\BDCenterLibrary.DTO\BDCenterLibrary.DTO.csproj" />
   </ItemGroup>
 
 </Project>

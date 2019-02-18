@@ -33,7 +33,7 @@ namespace BDCenterLibrary.DAL.Persistance
             }
         }
 
-        public IList<T> Consultar()
+        public IEnumerable<T> Consultar()
         {
             using (ISession session = NHiberateHelper.AbrirSession())
             {

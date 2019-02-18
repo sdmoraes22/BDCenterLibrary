@@ -1,9 +1,11 @@
 ﻿using BDCenterLibrary.DAL.Model;
 using BDCenterLibrary.DAL.Persistance;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BDCenterLibrary.BLL
 {
-    public class BibliotecaBLL
+    public class LivroBLL
     {
         private LivroRepository _livroRepository = new LivroRepository();
 
@@ -12,9 +14,9 @@ namespace BDCenterLibrary.BLL
             _livroRepository.Inserir(livro);
         }
 
-        public void ListarLivros()
+        public IEnumerable<Livro> ListarLivros()
         {
-            _livroRepository.Consultar();
+            return _livroRepository.Consultar();
         }
 
         public void BuscarLivroPorId(int id)

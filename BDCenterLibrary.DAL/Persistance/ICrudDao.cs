@@ -10,6 +10,6 @@ namespace BDCenterLibrary.DAL.Persistance
         void Alterar(T entidade);
         void Excluir(T entidade);
         T RetornarPorId(int id);
-        IList<T> Consultar();
+        IEnumerable<T> Consultar();
     }
 }

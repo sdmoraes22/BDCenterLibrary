@@ -1,7 +1,5 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using BDCenterLibrary.DAL.Data;
-using NHibernate.Tool.hbm2ddl;
 using NHibernate;
 using BDCenterLibrary.DAL.Model;
 
