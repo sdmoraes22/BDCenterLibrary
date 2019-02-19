@@ -2,22 +2,64 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <h2>Livraria ASP.NET WEB API</h2>
-</div>
+<h1>Livraria BD Center</h1>
+<a href="@Url.Action("CriarLivro","Home")">
+    <button class="btn btn-primary">Insere Livro</button>
+</a>
 
-<div class="row">
-    <div class="col-md-4">
-        
-        <p>
-            
-        </p>
-    </div>
-    <div class="col-md-4">
-        <ul>
-            <li>@Html.ActionLink("Inserir Livro", "CriarLivro", "Home")</li>
-            <li>@Html.ActionLink("Alterar Livro", "AlterarLivro", "Home")</li>
-        </ul>
-    </div>
-</div>
+<table class="table table-bordered table-hover" id="livros">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Autor</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            //Carregar Listagem de Livros via Ajax consumindo a API
+            var table = $("#livros").DataTable({
+                ajax: {
+                    url: "/api/BibliotecaAPI",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, livro) {
+                            return "<a href='/biblioteca/alterar/" + movies.movieid + "'>" + movies.name + "</a>"
+                        }
+                    },
+                    {
+                        data: "genre.name",
+                    },
+                    {
+                        data: "movieid",
+                        render: function (data) {
+                            return "<button class= 'btn-link js-delete' data-movie-id=" + data + ">Remover Filme</button>"
+                        }
+                    }
+                ]
+            });
+            //Remoção de livros via ajax
+            $("#movies").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Têm certeza de que deseja remover este filme?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/movies/" + $(button).attr("data-movie-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        })
+                    }
+                });
+            });
+        });
+    </script>
+}
