@@ -28,5 +28,10 @@ namespace BDCenterLibrary.BLL
         {
             _livroRepository.Excluir(livro);
         }
+
+        public void AlterarLivro(Livro livro)
+        {
+            _livroRepository.Alterar(livro);
+        }
     }
 }
