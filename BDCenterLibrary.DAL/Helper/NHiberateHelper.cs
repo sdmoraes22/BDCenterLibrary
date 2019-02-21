@@ -18,7 +18,7 @@ namespace BDCenterLibrary.DAL.Helper
             else
             {
                 IPersistenceConfigurer configDB = OracleClientConfiguration.Oracle10.ConnectionString(c =>
-                    c.Is("DATA SOURCE=CRISTIANO;PERSIST SECURITY INFO=True;USER ID=CRISTIANO;Password=123456"));
+                    c.Is("DATA SOURCE=CRISTIANO;PERSIST SECURITY INFO=True;USER ID=CRISTIANO;Password=123456;Integrated Security=no;"));
 
                 var configMap = Fluently.Configure().Database(configDB).Mappings(m => m.FluentMappings
                         .AddFromAssemblyOf<Livro>().ExportTo(@".\")

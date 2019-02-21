@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BDCenterLibrary.BLL;
+﻿using BDCenterLibrary.BLL;
 using BDCenterLibrary.DAL.Model;
 using BDCenterLibrary.DTO;
 using System.Collections.Generic;
@@ -20,13 +19,6 @@ namespace BDCenterLibrary.Web.Controllers.API
         [HttpDelete]
         public void DeleteLivro(Livro livro)
         {
-            Mapper.Initialize(cfg => {
-                cfg.CreateMap<Livro, LivroDto>();
-            });
-
-            var source = new Livro();
-            var dest = Mapper.Map<Livro, LivroDto>(source);
-
             livroBLL.RemoverLivro(livro);
         }
 
@@ -39,26 +31,13 @@ namespace BDCenterLibrary.Web.Controllers.API
         [HttpPost]
         public void InsereLivro(Livro livro)
         {
-            Mapper.Initialize(cfg => {
-                cfg.CreateMap<Livro, LivroDto>();
-            });
-
-            var source = new Livro();
-            var dest = Mapper.Map<Livro, LivroDto>(source);
-
             livroBLL.SalvarLivro(livro);
         }
 
         [HttpPut]
         public void Atualiza(Livro livro)
         {
-            Mapper.Initialize(cfg => {
-                cfg.CreateMap<Livro, LivroDto>();
-            });
-
             var source = new Livro();
-            var dest = Mapper.Map<Livro, LivroDto>(source);
-
             livroBLL.AlterarLivro(livro);
         }
     }
