@@ -17,13 +17,13 @@ namespace BDCenterLibrary.DAL.Helper
             }
             else
             {
-                IPersistenceConfigurer configDB = OracleClientConfiguration.Oracle10.ConnectionString(c =>
-                    c.Is("DATA SOURCE=CRISTIANO;PERSIST SECURITY INFO=True;USER ID=CRISTIANO;Password=123456;Integrated Security=no;"));
+                IPersistenceConfigurer configDB = OracleClientConfiguration.Oracle9.ConnectionString(c =>
+                    c.Is("Data Source=xe;User Id=CRISTIANO;Password=123456;;"));
 
                 var configMap = Fluently.Configure().Database(configDB).Mappings(m => m.FluentMappings
-                        .AddFromAssemblyOf<Livro>().ExportTo(@".\")
-                        .AddFromAssemblyOf<Autor>().ExportTo(@".\")
-                        .AddFromAssemblyOf<ISBN>().ExportTo(@".\")
+                        .AddFromAssemblyOf<Livro>()
+                        .AddFromAssemblyOf<Autor>()
+                        .AddFromAssemblyOf<ISBN>()
                         );
 
                 session = configMap.BuildSessionFactory();
@@ -33,6 +33,7 @@ namespace BDCenterLibrary.DAL.Helper
 
         public static ISession AbrirSession()
         {
+            CreateSession();
             return session.OpenSession();
         }
 
